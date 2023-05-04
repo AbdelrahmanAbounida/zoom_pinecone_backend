@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  # 1- App
+  spirit-app: 
+    build: . # location of dockerimage
+    command: gunicorn -b 0.0.0.0:8000 --reload --access-logfile - "api:create_app()"
+    environment: 
+      - FLASK_DEBUG= develpment # this will allow python to generate output directly to console without buffering and saving it in ram
+      - FLASK_APP= application.py
+    volumes: # whre u wanna save persistant/ cash data
+      - .:/api
+    ports:
+      - '8000:8000'
