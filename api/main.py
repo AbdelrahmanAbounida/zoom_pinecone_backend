@@ -27,9 +27,10 @@ class QuestionAnswerBot(Resource):
             return {"error": "transcript_ids shouldn't be none"}
         
         question = request.json['question']
-        transcript_ids = request.json['transcript_ids'][0]
+        transcript_ids = request.json['transcript_ids']
         clientId = request.json['clientId']
 
+        print(f"transcript_ids: {transcript_ids}")
         # s = transcript_ids.replace("\\n", "").replace("\\", "").strip()
 
         # parse the string into a list using json.loads()
