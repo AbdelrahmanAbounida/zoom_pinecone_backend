@@ -17,22 +17,26 @@ class QuestionAnswerBot(Resource):
         return "Transcript Zoom chatbot is ready"
     
     def post(self):
+        if not 'question' in request.json:
+            return {"error": "question shouldn't be none"}
+        
+        if not 'clientId' in request.json:
+            return {"error": "clientId shouldn't be none"}
+        
+        if not 'transcript_ids' in request.json:
+            return {"error": "transcript_ids shouldn't be none"}
+        
+        question = request.json['question']
+        transcript_ids = request.json['transcript_ids'][0]
+        clientId = request.json['clientId']
 
-        question = request.form['question']
-        transcript_ids = request.form.getlist('transcript_ids')[0]
-        clientId = request.form['clientId']
-
-
-        print(f"question: {question}")
-        print(f"clientId: {clientId}")
-
-        s = transcript_ids.replace("\\n", "").replace("\\", "").strip()
+        # s = transcript_ids.replace("\\n", "").replace("\\", "").strip()
 
         # parse the string into a list using json.loads()
-        my_list = json.loads(s)
-        print(f"transcript_ids: {my_list}")
+        # my_list = json.loads(s)
+        # print(f"transcript_ids: {my_list}")
 
-        context = qa_transcript(question=question,transcriptIDs=my_list,clientID=clientId)['matches']
+        context = qa_transcript(question=question,transcriptIDs=transcript_ids,clientID=clientId)['matches']
 
         if not len(context):
             return {"Question": question, context: ""}
