@@ -15,10 +15,7 @@ def init_pinecone_openai():
 
 def qa_transcript(question,
                     clientID="12345",
-                    transcriptIDs=[
-                        "1T1g8KNFkxzxhDgsxUjlYl2ow2YQoUc82",
-                        "1T73I4uA3BpNPWuCppF664YncSVBJhVJs"
-                    ]):
+                    transcriptIDs="1T1g8KNFkxzxhDgsxUjlYl2ow2YQoUc82"): # "1T73I4uA3BpNPWuCppF664YncSVBJhVJs"
     
     index_name = "dailyautomations"
     index = pinecone.Index(index_name)
@@ -26,7 +23,9 @@ def qa_transcript(question,
 
     metadata = {
         "transcript_id": {
-            "$in": transcriptIDs
+            # "$in": transcriptIDs
+            "$eq": transcriptIDs
+
         },
         "clientID": {
             "$eq": clientID

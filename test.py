@@ -3,7 +3,7 @@ import requests
 url = "https://zoom-pinecone-backend.onrender.com/qa"
 
 payload = {
-    "question": "test",
+    "question": "hi ",
     "clientId": "12345",
     "transcript_ids": [
         "1T1g8KNFkxzxhDgsxUjlYl2ow2YQoUc82",
