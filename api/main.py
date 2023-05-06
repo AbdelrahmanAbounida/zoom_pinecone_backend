@@ -39,9 +39,10 @@ class QuestionAnswerBot(Resource):
 
         context = qa_transcript(question=question,transcriptIDs=transcript_ids,clientID=clientId)['matches']
 
+        print("**********************************************")
         if not len(context):
             return {"Question": question, context: ""}
-        
+        print("**********************************************")
 
         print(context[0]['metadata']['context'])
         return {
