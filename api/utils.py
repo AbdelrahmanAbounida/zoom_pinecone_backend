@@ -9,7 +9,7 @@ def init_pinecone_openai():
     pinecone_api_key = os.environ.get("PINECONE_API_KEY")
     pinecone_environment = os.environ.get("PINECONE_ENVIRONMENT")
     pinecone.init(api_key=pinecone_api_key, environment=pinecone_environment)
-    # openai.api_key = os.environ.get("OPENAI_API_KEY")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
 
