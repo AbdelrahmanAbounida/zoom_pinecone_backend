@@ -9,14 +9,14 @@ def init_pinecone_openai():
     pinecone_api_key = os.environ.get("PINECONE_API_KEY")
     pinecone_environment = os.environ.get("PINECONE_ENVIRONMENT")
     pinecone.init(api_key=pinecone_api_key, environment=pinecone_environment)
-    openai.api_key = os.environ.get("OPENAI_API_KEY")
+    # openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
 
-def qa_transcript(question,
+def qa_transcript(question,openai_key = os.environ.get("OPENAI_API_KEY"),
                     clientID="12345",
                     transcriptIDs="1T1g8KNFkxzxhDgsxUjlYl2ow2YQoUc82"): # "1T73I4uA3BpNPWuCppF664YncSVBJhVJs"
-    
+    openai.api_key = openai_key
     index_name = "dailyautomations"
     index = pinecone.Index(index_name)
     namespace = "Zoom"
