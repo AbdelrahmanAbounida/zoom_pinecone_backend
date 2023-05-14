@@ -26,10 +26,14 @@ class QuestionAnswerBot(Resource):
         if not 'transcript_ids' in request.json:
             return {"error": "transcript_ids shouldn't be none"}
         
+        if not 'openai_key' in request.json:
+            return {"error": "openai_key shouldn't be none"}
+        
         question = request.json['question']
         transcript_ids = request.json['transcript_ids']
         clientId = request.json['clientId']
-
+        openai_key = request.json['openai_key']
+        
         print(f"transcript_ids: {transcript_ids}")
         # s = transcript_ids.replace("\\n", "").replace("\\", "").strip()
 
@@ -37,7 +41,7 @@ class QuestionAnswerBot(Resource):
         # my_list = json.loads(s)
         # print(f"transcript_ids: {my_list}")
 
-        context = qa_transcript(question=question,transcriptIDs=transcript_ids,clientID=clientId)['matches']
+        context = qa_transcript(question=question,transcriptIDs=transcript_ids,clientID=clientId,openai_key=openai_key)['matches']
 
         print("**********************************************")
         if not len(context):
